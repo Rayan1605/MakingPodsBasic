@@ -1,6 +1,7 @@
 # Replica set are the most recommended because it manage pods that are created later due to whatever reason
 apiVersion: apps/v1 # Replica set Needs this, v1 would be an error unlike the Replication Controller
 kind: ReplicaSet  # This is a ReplicaSet
+#
 metadata:
   name: myapp-replicaset
   labels:
@@ -11,11 +12,11 @@ spec:
   template:
         metadata:
           name: myapp-pod
-          labels:
+          labels: # These are the labels for the POD
             app: myapp
             type: front-end
           spec:
-            containers:
+            containers: # Below are the Containers
               - name: nginx-container
                 image: nginx
   replicas: 3
