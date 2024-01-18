@@ -16,7 +16,7 @@ spec:
             app: myapp
             type: front-end
           spec:
-            containers: # Below are the Containers
+            containers: # Below are the Containers so one uses the nginx engine
               - name: nginx-container
                 image: nginx
   replicas: 3
