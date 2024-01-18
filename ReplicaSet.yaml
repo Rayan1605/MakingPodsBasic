@@ -1,0 +1,25 @@
+# Replica set are the most recommended because it manage pods that are created later due to whatever reason
+apiVersion: apps/v1 # Replica set Needs this, v1 would be an error unlike the Replication Controller
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:
+        metadata:
+          name: myapp-pod
+          labels:
+            app: myapp
+            type: front-end
+          spec:
+            containers:
+              - name: nginx-container
+                image: nginx
+  replicas: 3
+  #This is necessary (selector) for a Replica set as it helps to know what pods it falls under by matching the labels
+  selector:
+    matchLabels:
+      type: front-end # So this is for simple matching and any matches then it will control that
