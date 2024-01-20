@@ -1,0 +1,14 @@
+ApiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+
+spec: # This is the specification of the service
+  type: NodePort # This is the type of service
+  ports:
+    - targetPort: 80 # This is the port that the service will forward to and is where your application is
+      port: 80 # This is the port that the service will listen to when your inside the cluster
+      nodePort: 30008 # This is the port that the service will listen for external traffic so if If someone outside the building (outside the Cluster)  wants Coffee then they go to 30,000
+
+  selector:
+    app: myapp
