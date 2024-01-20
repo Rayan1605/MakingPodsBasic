@@ -1,0 +1,24 @@
+apiVersion: apps/v1 #
+kind: Deployment  #
+metadata:
+  name: myapp-deployment # This is the name of the Deployment
+  labels:  # these are used to identify and organizing Kubernetes
+    app: myapp
+    type: front-end
+
+spec: # This is to specify the desired state of the Deployment
+  template:
+    metadata:
+      name: myapp-pod
+      labels: # These are the labels for the POD
+        app: myapp
+        type: front-end
+      spec:
+        containers: # Below are the Containers so one uses the nginx engine
+          - name: nginx-container
+            image: nginx
+  replicas: 3
+  #This is necessary (selector) for a Replica set as it helps to know what pods it falls under by matching the labels
+  selector:
+    matchLabels:
+      type: front-end # So this is for simple matching and any matches then it will control that
