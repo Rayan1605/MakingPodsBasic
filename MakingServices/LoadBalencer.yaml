@@ -1,0 +1,12 @@
+# A load balencer service  will be used to route traffic to the web app and
+#is responsible for distributing traffic to the pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-loadbalencer
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30008
