@@ -1,0 +1,38 @@
+apiVersion: v1 # This is like saying I am using Version 1
+kind: Pod #  This is like saying I am creating a Pod
+metadata: # This is where you give your pod a name and other labels
+  name: configmap-demo-pod # This is the name of the pod
+spec: # This is the blueprint of the pod, tells the pod what it should have or not have
+  containers: # This defines what containers are in the pod
+    - name: demo # This is the name of the container
+      image: alpine # This is the image of the container
+      command: ["sleep", "3600"] # This is the command say ti sleep for 3600 seconds
+      env: #  This is where you define the the environment variables inside the containe
+        - name: PLAYER_INITIAL_LIVES # Notice the case is different, from the key name in Config Map
+          valueFrom: # This value is taken from somewhere else
+            configMapKeyRef: # Value come from a ConfigMap
+              name: game-demo # This is the name of the ConfigMap
+              key: player_initial_lives # This is the key in the ConfigMap that has the value
+
+        - name: UI_PROPERTIES_FILE_NAME # Same thing here expect the key is different, now it is ui_properties_file_name
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo
+              key: ui_properties_file_name
+
+      volumeMounts:
+        - name : config
+          mountPath: /config
+          readOnly: true
+
+
+  volumes:
+         - name: config
+           configMap:
+              name: game-demo
+              items:
+                 - key: "game.properties"
+                   path: "game.properties"
+                 - key: "ui.properties"
+                   path: "user-interface.properties"
+

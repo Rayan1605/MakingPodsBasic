@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+# The data in the config map is stored as key-value pairs.
+ player_initial_lives: "3"
+ ui_properties_file_name: "user-interface.properties"
+
+# File-like keys can be specified using the | (pipe) character.
+#  File-like keys is a feature that allows you to store files in a ConfigMap.
+ game.properties: |
+   enemy.types=aliens,monsters 
+   player.maximum-lives=5
+   ui.properties: |
+     color.good=purple
+     color.bad=yellow
+     allow.textmode=true
+     how.nice.to.look=fairlyNice
