@@ -26,10 +26,10 @@ spec: # This is the blueprint of the pod, tells the pod what it should have or n
           readOnly: true # You can't change it
 
 
-  volumes:
-         - name: config
-           configMap:
-              name: game-demo
+  volumes: # volumes is like an external hard drive where the container can store data
+         - name: config # This is the name of the volume
+           configMap: # This is the type of volume, in this case it is a ConfigMap
+              name: game-demo # This is the name of the ConfigMap
               items:
                  - key: "game.properties"
                    path: "game.properties"

@@ -9,11 +9,10 @@ data:
 
 # File-like keys can be specified using the | (pipe) character.
 #  File-like keys is a feature that allows you to store files in a ConfigMap.
- game.properties: |
-   enemy.types=aliens,monsters 
-   player.maximum-lives=5
-   ui.properties: |
-     color.good=purple
-     color.bad=yellow
-     allow.textmode=true
-     how.nice.to.look=fairlyNice
+game.properties: |
+  enemy.types=aliens,monsters
+  player.maximum-lives=5
+user-interface.properties: |
+  color.good=purple
+  color.bad=yellow
+  allow.textmode=true
