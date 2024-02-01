@@ -20,10 +20,10 @@ spec: # This is the blueprint of the pod, tells the pod what it should have or n
               name: game-demo
               key: ui_properties_file_name
 
-      volumeMounts:
-        - name : config
-          mountPath: /config
-          readOnly: true
+      volumeMounts: # This is telling the container where to attach the volume
+        - name : config # This is the name of the volume
+          mountPath: /config # This is the path where the volume will be attached in the container
+          readOnly: true # You can't change it
 
 
   volumes:
