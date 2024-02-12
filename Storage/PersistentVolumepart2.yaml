@@ -4,20 +4,27 @@ metadata:
   name: pv-namepart2
 spec:
   capacity:
-    storage: 100Gi
-  volumeMode: Filesystem
+    storage: 100Gi # The size to be 100 Gigabytes
+  volumeMode: Filesystem  # Will be presented like a filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Delete # Once the PVC is deleted then so will the PV
   storageClassName: local-storage
-  local:
-    path: /mnt/disks/ssd1
-  nodeAffinity:
-    required:
+  local: # This mean that this is stored in the node
+    path: /mnt/disks/ssd1 # The path to the node
+  nodeAffinity: # This section is the what's required for the node to have access to this so basically this PV
+    # IS only available for  a specfic set of nodes
+    required: # What's required
       nodeSelectorTerms:
         - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
+            - key: kubernetes.io/hostname # This is looking at the node hostname label
+              operator: In # This mean that the value must be inside the hostname key
               values:
-                - my-node
+                - my-node # Looking for this valye
+
+  # So for a pod it might look like this
+                # persistentVolumeClaim
+                #   claimName: example-pvc
+                # nodeSelector:
+                # Kubernetes.io/hostname: my-node
 
