@@ -1,12 +1,13 @@
+# This is used to  request storage space
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: PVC-NAME
 spec:
-  storageClassName: manual
-  volumeMode: Filesystem
+  storageClassName: manual # make sure you have this
+  volumeMode: Filesystem # This is how volume should be mounted so this mean it will appear as a regular file system
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce # Only one node can read or write
   resources:
-    requests:
-      storage: 10Gi
+    requests: # the minimum amount of resources it needs
+      storage: 10Gi # This storage
