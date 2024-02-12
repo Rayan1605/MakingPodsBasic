@@ -7,7 +7,7 @@ metadata:
 spec: # Giving the details to our storage space
   capacity:
      storage: 5Gi # This line set how big the storage space is
-  volumeMode: Filesystem
+  volumeMode: Filesystem # This mean you want the storage to be organized in a hierarchical structure similar to how files are
   accessModes:
     - ReadWriteOnce # Only one user at a time can read or write
   persistentVolumeReclaimPolicy: Recycle # Telling kubernetes to clean and make it readt for someone else when i am done
