@@ -24,7 +24,7 @@ spec:
 
   # So for a pod it might look like this
                 # persistentVolumeClaim
-                #   claimName: example-pvc
+                #   claimName: pv-namepart2 -> This needs to be the same as the name in metadata for the pV
                 # nodeSelector:
                 # Kubernetes.io/hostname: my-node
 
