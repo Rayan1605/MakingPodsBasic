@@ -1,10 +1,11 @@
+# This is telling Kubernetes that you want to create a special storage space for your application.
 apiVersion: v1
 kind: PersistentVolume
 metadata:
- name: pv-name
-spec:
+ name: pv-name #The name to our storage space
+spec: # Giving the details to our storage space
   capacity:
-     storage: 5Gi
+     storage: 5Gi # This line set how big the storage space is
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
