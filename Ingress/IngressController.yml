@@ -1,7 +1,7 @@
 # This is an ingress controller that's used to control the traffic that's coming into the cluster and
 #it's used to route the traffic to the correct services
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
@@ -21,4 +21,17 @@ spec:
 
       args: # These arguments that the container should start with. It's similar to to commands in a linux terminal
        - /nginx-ingress-controller
+       #This argument below tells the Nginx Ingress Controller to use a specific ConfigMap named nginx-configuration
+        #for its runtime configuration.
+        #This ConfigMap contains custom configuration settings for Nginx.
        - --configmap=$ (POD_NAMESPACE) /nginx-configuration
+      env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+
