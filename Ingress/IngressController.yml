@@ -19,6 +19,6 @@ spec:
         - name: nginx-ingress-controller
           image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
 
-      args:
+      args: # These arguments that the container should start with. It's similar to to commands in a linux terminal
        - /nginx-ingress-controller
        - --configmap=$ (POD_NAMESPACE) /nginx-configuration
