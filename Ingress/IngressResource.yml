@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource
+  annotations:
+    # This basically So, when someone sends a request (letter) to your website like
+    #http://myapp.example.com/service1/info (imagine "Office/Invoices/info"),
+    #your Ingress (mail sorter) sees the /service1 part and knows it should go to service1 (Invoices).
+    #But because of the special instruction (rewrite-target), it only tells service1 about /info,
+    #not /service1/info. It's like removing the "Office/" part before delivering the letter,
+    #so service1 thinks the request was just for /info.
+
+    # when it's sending it to port 80 it's just sending /info not the  /services1/info
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: myapp.example.com
+      http:
+        paths:
+          - path: /service1
+            pathType: Prefix
+            backend:
+              service:
+                #Below is the name of the service that it will match too, remember the name is the name of the
+                # metadata in the service class and it must be listenting to the same port number
+                name: service1
+                port:
+                  number: 80
+          - path: /service2
+            pathType: Prefix
+            backend:
+              service:
+                name: service2
+                port:
+                  number: 80
+
