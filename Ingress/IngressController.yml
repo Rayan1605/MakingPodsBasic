@@ -25,6 +25,7 @@ spec:
         #for its runtime configuration.
         #This ConfigMap contains custom configuration settings for Nginx.
        - --configmap=$ (POD_NAMESPACE) /nginx-configuration
+        # basically it saying get the pod NAME AND pod namespace from the actual pod itself?
       env:
         - name: POD_NAME
           valueFrom:
